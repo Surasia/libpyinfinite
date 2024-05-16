@@ -1,0 +1,78 @@
+[project]
+name = "libpyinfinite"
+version = "0.0.1"
+description = "Python library for dealing with binary files from Halo Infinite"
+license = {file = "LICENSE"}
+authors = [{ name = "Surasia"}]
+requires-python = ">= 3.11.0"
+readme = "README.md"
+keywords = ["Halo", "Halo Infinite", "Module", "Tags", "Module"]
+classifiers = [
+    "Typing :: Typed",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: Microsoft :: Windows",
+    "Intended Audience :: Developers",
+    "Development Status :: 3 - Alpha"
+]
+
+[project.urls]
+Repository = "https://github.com/Surasia/libpyinfinite"
+Issues = "https://github.com/Surasia/libpyinfinite/issues"
+
+
+
+[tool.rye]
+dev-dependencies = [
+    "pyright",
+    "mypy",
+    "pytest",
+    "ruff",
+]
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.rye.scripts]
+format = { chain = ["format:ruff","fix:ruff",]}
+"format:ruff" = "ruff format"
+"lint" = { chain = ["check:ruff","typecheck",]}
+"check:ruff" = "ruff ."
+"fix:ruff" = "ruff --fix ."
+typecheck = { chain = ["typecheck:pyright","typecheck:mypy"]}
+"typecheck:pyright" = "pyright"
+"typecheck:mypy" = "mypy ."
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = [
+  "libpyinfinite/*"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["libpyinfinite/"]
+
+
+[tool.pyright]
+typeCheckingMode = "strict"
+pythonVersion = "3.12"
+reportImplicitOverride = true
+
+[tool.ruff]
+line-length = 120
+output-format = "grouped"
+target-version = "py312"
+ignore-init-module-imports = true
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint.isort]
+length-sort = true
+length-sort-straight = true
+combine-as-imports = true
+extra-standard-library = ["typing_extensions"]
