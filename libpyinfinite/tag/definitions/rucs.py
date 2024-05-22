@@ -31,12 +31,10 @@ class RuntimeCoatingStylesTag:
     def read(self, f: BytesIO) -> None:
         self.anyTag.read(f)
         self.stylesTagBlock.read(f)
-
+        self.visorSwatch.read(f)
+        self.defaultStyleIndex = read_integer(f, True, 4)
+        self.generated_pad23c7 = read_integer(f, True, 4)
         for _ in range(self.stylesTagBlock.count):
             style = RuntimeCoatingStyleRef()
             style.read(f)
             self.styles.append(style)
-
-        self.visorSwatch.read(f)
-        self.defaultStyleIndex = read_integer(f, True, 4)
-        self.generated_pad23c7 = read_integer(f, True, 4)

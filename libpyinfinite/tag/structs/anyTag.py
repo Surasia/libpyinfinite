@@ -20,6 +20,7 @@ class AnyTag:
     It initializes tag pointers and also provides the global tag ID
     which is registered on the "hydrated" tag list in memory.
     """
+
     def __init__(self) -> None:
         self.vtableSpace: int = -1
         self.internalStruct: InternalStruct = InternalStruct()

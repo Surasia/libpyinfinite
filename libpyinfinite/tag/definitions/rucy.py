@@ -63,7 +63,7 @@ class CoatingPaletteInfo:
         self.generated_padce2e: int = -1
 
     def read(self, f: BytesIO) -> None:
-        self.elementID = read_integer(f, False, 4)
+        self.elementID = read_integer(f, False, 8)
         self.description.read(f)
         self.swatch.read(f)
         self.gradientColorFlag = OverrideColorsEnum(read_integer(f, False, 1))
@@ -160,12 +160,12 @@ class RuntimeCoatingStyleTag:
         self.info.read(f)
         self.regionTagBlock.read(f)
 
+        f.seek(4, 1)  # 4 Byte padding, for some reason
+
         for _ in range(self.regionTagBlock.count):
             region = RuntimeCoatingRegion()
             region.read(f)
             self.regions.append(region)
-
-        f.seek(4, 1)  # 4 Byte Padding
 
         for region in self.regions:
             region.readTagBlock(f)
