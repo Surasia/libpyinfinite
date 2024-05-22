@@ -20,6 +20,7 @@ classifiers = [
 [project.urls]
 Repository = "https://github.com/Surasia/libpyinfinite"
 Issues = "https://github.com/Surasia/libpyinfinite/issues"
+Changelog = "https://github.com/Surasia/libpyinfinite/main/CHANGELOG.md"
 
 
 
