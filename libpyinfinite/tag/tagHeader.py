@@ -1,7 +1,6 @@
-import struct
 from io import BytesIO
 
-from .. reader import common
+from ..reader.common import read_integer, read_string
 
 __all__ = ["HiTagHeader"]
 
@@ -37,24 +36,24 @@ class HiTagHeader:
         """
         Read tag header variables.
         """
-        self.magic = struct.unpack("4s", f.read(4))[0]
-        self.version = common.read_integer(f, True, 4)
-        self.tagHash = common.read_integer(f, True, 8)
-        self.assetChecksum = common.read_integer(f, True, 8)
-        self.dependencyCount = common.read_integer(f, True, 4)
-        self.datablockCount = common.read_integer(f, True, 4)
-        self.tagStructCount = common.read_integer(f, True, 4)
-        self.dataReferenceCount = common.read_integer(f, True, 4)
-        self.tagReferenceCount = common.read_integer(f, True, 4)
-        self.stringTableSize = common.read_integer(f, True, 4)
-        self.zonesetDataSize = common.read_integer(f, True, 4)
-        self.unknownDescInfoType = common.read_integer(f, True, 4)
-        self.headerSize = common.read_integer(f, True, 4)
-        self.dataSize = common.read_integer(f, True, 4)
-        self.resourceDataSize = common.read_integer(f, True, 4)
-        self.ActualResourceSize = common.read_integer(f, True, 4)
-        self.headerAlignment = common.read_integer(f, True, 1)
-        self.tagDataAlignment = common.read_integer(f, True, 1)
-        self.resourceDataAlignment = common.read_integer(f, True, 1)
-        self.ActualResourceAlignment = common.read_integer(f, True, 1)
-        self.unknownProperty = common.read_integer(f, True, 4)
+        self.magic = read_string(f, 4)
+        self.version = read_integer(f, True, 4)
+        self.tagHash = read_integer(f, True, 8)
+        self.assetChecksum = read_integer(f, True, 8)
+        self.dependencyCount = read_integer(f, True, 4)
+        self.datablockCount = read_integer(f, True, 4)
+        self.tagStructCount = read_integer(f, True, 4)
+        self.dataReferenceCount = read_integer(f, True, 4)
+        self.tagReferenceCount = read_integer(f, True, 4)
+        self.stringTableSize = read_integer(f, True, 4)
+        self.zonesetDataSize = read_integer(f, True, 4)
+        self.unknownDescInfoType = read_integer(f, True, 4)
+        self.headerSize = read_integer(f, True, 4)
+        self.dataSize = read_integer(f, True, 4)
+        self.resourceDataSize = read_integer(f, True, 4)
+        self.ActualResourceSize = read_integer(f, True, 4)
+        self.headerAlignment = read_integer(f, True, 1)
+        self.tagDataAlignment = read_integer(f, True, 1)
+        self.resourceDataAlignment = read_integer(f, True, 1)
+        self.ActualResourceAlignment = read_integer(f, True, 1)
+        self.unknownProperty = read_integer(f, True, 4)

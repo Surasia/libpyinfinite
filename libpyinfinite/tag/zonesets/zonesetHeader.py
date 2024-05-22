@@ -1,6 +1,6 @@
 from io import BytesIO
 
-from ... reader import common
+from ...reader.common import read_integer
 
 __all__ = ["HiTagZonesetHeader"]
 
@@ -23,7 +23,7 @@ class HiTagZonesetHeader:
         """
         Reads Zoneset Header.
         """
-        self.version = common.read_integer(f, True, 4)
-        self.zonesetCount = common.read_integer(f, True, 4)
-        self.footerCount = common.read_integer(f, True, 4)
-        self.parents = common.read_integer(f, True, 4)
+        self.version = read_integer(f, True, 4)
+        self.zonesetCount = read_integer(f, True, 4)
+        self.footerCount = read_integer(f, True, 4)
+        self.parents = read_integer(f, True, 4)

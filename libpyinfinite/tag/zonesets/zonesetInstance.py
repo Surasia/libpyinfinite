@@ -2,7 +2,7 @@ from .zonesetInstanceHeader import HiTagZonesetInstanceHeader
 from .zonesetTag import HiTagZonesetTag
 from typing import List
 from io import BytesIO
-from ... reader import common
+from ...reader.common import read_integer
 
 __all__ = ["HiTagZoneInstance"]
 
@@ -40,5 +40,5 @@ class HiTagZoneInstance:
             self.ZoneSetFooterTags.append(footer_tag_entry)
 
         for _ in range(self.Header.parentCount):
-            parent_entry = common.read_integer(f, True, 4)
+            parent_entry = read_integer(f, True, 4)
             self.ZoneSetParents.append(parent_entry)

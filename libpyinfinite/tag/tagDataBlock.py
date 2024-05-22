@@ -1,6 +1,6 @@
 from io import BytesIO
 
-from .. reader import common
+from ..reader.common import read_integer
 
 from .tagTypes import HiTagSectionType
 
@@ -25,7 +25,7 @@ class HiTagDataBlock:
         """
         Reads data block variables.
         """
-        self.entrySize = common.read_integer(f, True, 4)
-        self.pad = common.read_integer(f, True, 2)
-        self.section = HiTagSectionType(common.read_integer(f, True, 2))
-        self.offset = common.read_integer(f, True, 8)
+        self.entrySize = read_integer(f, True, 4)
+        self.pad = read_integer(f, True, 2)
+        self.section = HiTagSectionType(read_integer(f, True, 2))
+        self.offset = read_integer(f, True, 8)

@@ -1,7 +1,7 @@
 [project]
 name = "libpyinfinite"
-version = "0.0.1"
-description = "Python library for dealing with binary files from Halo Infinite"
+version = "0.0.2"
+description = "Python library for parsing binary files from Halo Infinite."
 license = {file = "LICENSE"}
 authors = [{ name = "Surasia"}]
 requires-python = ">= 3.11.0"
@@ -20,6 +20,7 @@ classifiers = [
 [project.urls]
 Repository = "https://github.com/Surasia/libpyinfinite"
 Issues = "https://github.com/Surasia/libpyinfinite/issues"
+Changelog = "https://github.com/Surasia/libpyinfinite/main/CHANGELOG.md"
 
 
 

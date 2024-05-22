@@ -1,6 +1,6 @@
 from io import BytesIO
 
-from ... reader import common
+from ...reader.common import read_integer
 
 __all__ = ["HiTagZonesetInstanceHeader"]
 
@@ -23,7 +23,7 @@ class HiTagZonesetInstanceHeader:
         """
         Reads zoneset instance header variables.
         """
-        self.stringId = common.read_integer(f, True, 4)
-        self.tagCount = common.read_integer(f, True, 4)
-        self.parentCount = common.read_integer(f, True, 4)
-        self.footerCount = common.read_integer(f, True, 4)
+        self.stringId = read_integer(f, True, 4)
+        self.tagCount = read_integer(f, True, 4)
+        self.parentCount = read_integer(f, True, 4)
+        self.footerCount = read_integer(f, True, 4)
