@@ -1,6 +1,6 @@
 from io import BytesIO
 
-from .. reader import common
+from ..reader.common import read_integer
 
 from .tagTypes import HiTagStructType
 
@@ -27,9 +27,9 @@ class HiTagStruct:
         """
         Reads tag struct variables.
         """
-        self.guid = common.read_integer(f, True, 16)
-        self.type = HiTagStructType(common.read_integer(f, True, 2))
-        self.unknown = common.read_integer(f, True, 2)
-        self.targetIndex = common.read_integer(f, True, 4)
-        self.fieldBlock = common.read_integer(f, True, 4)
-        self.fieldOffset = common.read_integer(f, False, 4)
+        self.guid = read_integer(f, True, 16)
+        self.type = HiTagStructType(read_integer(f, True, 2))
+        self.unknown = read_integer(f, True, 2)
+        self.targetIndex = read_integer(f, True, 4)
+        self.fieldBlock = read_integer(f, True, 4)
+        self.fieldOffset = read_integer(f, False, 4)

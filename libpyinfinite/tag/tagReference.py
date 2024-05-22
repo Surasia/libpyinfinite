@@ -1,6 +1,6 @@
 from io import BytesIO
 
-from .. reader import common
+from ..reader.common import read_integer
 
 __all__ = ["HiTagReference"]
 
@@ -23,7 +23,7 @@ class HiTagReference:
         """
         Reads tag reference variables.
         """
-        self.fieldBlock = common.read_integer(f, True, 4)
-        self.fieldOffset = common.read_integer(f, False, 4)
-        self.nameOffset = common.read_integer(f, False, 4)
-        self.dependencyIndex = common.read_integer(f, True, 4)
+        self.fieldBlock = read_integer(f, True, 4)
+        self.fieldOffset = read_integer(f, False, 4)
+        self.nameOffset = read_integer(f, False, 4)
+        self.dependencyIndex = read_integer(f, True, 4)

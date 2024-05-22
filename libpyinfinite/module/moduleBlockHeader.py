@@ -1,6 +1,6 @@
 from io import BytesIO
 
-from .. reader import common
+from ..reader.common import read_integer
 
 __all__ = ["HiModuleBlockEntry"]
 
@@ -24,8 +24,8 @@ class HiModuleBlockEntry:
         """
         Read module block variables.
         """
-        self.comp_offset = common.read_integer(f, True, 4)
-        self.comp_size = common.read_integer(f, True, 4)
-        self.decomp_offset = common.read_integer(f, True, 4)
-        self.decomp_size = common.read_integer(f, True, 4)
-        self.b_compressed = common.read_integer(f, False, 4)
+        self.comp_offset = read_integer(f, True, 4)
+        self.comp_size = read_integer(f, True, 4)
+        self.decomp_offset = read_integer(f, True, 4)
+        self.decomp_size = read_integer(f, True, 4)
+        self.b_compressed = read_integer(f, False, 4)

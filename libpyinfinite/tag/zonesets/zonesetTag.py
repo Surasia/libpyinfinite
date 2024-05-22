@@ -1,6 +1,6 @@
 from io import BytesIO
 
-from ... reader import common
+from ...reader.common import read_integer
 
 __all__ = ["HiTagZonesetTag"]
 
@@ -14,12 +14,12 @@ class HiTagZonesetTag:
         """
         Initialize zoneset tag variables.
         """
-        self.globalId: int = -1
+        self.globalId: str = ""
         self.stringId: int = -1
 
     def read(self, f: BytesIO) -> None:
         """
         Reads zoneset tag variables.
         """
-        self.globalId = common.read_integer(f, False, 4)
-        self.stringId = common.read_integer(f, True, 4)
+        self.globalId = hex(read_integer(f, False, 4))
+        self.stringId = read_integer(f, True, 4)

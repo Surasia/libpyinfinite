@@ -1,7 +1,7 @@
 from io import BytesIO
 from typing import List
 
-from .. reader import common
+from ..reader.common import read_integer, skip_empty_bytes
 
 from .moduleBlockHeader import HiModuleBlockEntry
 from .moduleFile import HiModuleFileEntry
@@ -44,7 +44,7 @@ class HiModule:
         f.seek(f.tell() + 8)  # 8 Byte padding, for some reason.
 
         for _ in range(self.Header.resourceCount):
-            resource = common.read_integer(f, True, 4)
+            resource = read_integer(f, True, 4)
             self.Resources.append(resource)
 
         self.BlockListOffset = f.tell()
@@ -54,7 +54,7 @@ class HiModule:
             block_entry.read(f)
             self.Blocks.append(block_entry)
 
-        common.skip_empty_bytes(f)  # Align itself to ??????1000, done via skipping 0x00.
+        skip_empty_bytes(f)  # Align itself to ??????1000, done via skipping 0x00.
         self.FileDataOffset = f.tell()
 
     def read_tag(self, f: BytesIO, index: int, decompressor: OodleDecompressor) -> BytesIO:

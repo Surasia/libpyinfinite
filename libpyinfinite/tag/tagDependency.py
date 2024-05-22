@@ -1,7 +1,6 @@
-import struct
 from io import BytesIO
 
-from .. reader import common
+from ..reader.common import read_string, read_integer
 
 __all__ = ["HiTagDependency"]
 
@@ -13,16 +12,16 @@ class HiTagDependency:
         """
         self.tagGroup: str = ""
         self.nameOffset: int = -1
-        self.assetId: int = -1
-        self.globalId: int = -1
+        self.assetId: str = ""
+        self.globalId: str = ""
         self.parent: int = -1
 
     def read(self, f: BytesIO) -> None:
         """
         Read tag dependency variables.
         """
-        self.tagGroup = common.reverse_string(struct.unpack("4s", f.read(4))[0])
-        self.nameOffset = common.read_integer(f, True, 4)
-        self.assetId = common.read_integer(f, True, 8)
-        self.globalId = common.read_integer(f, True, 4)
-        self.parent = common.read_integer(f, True, 4)
+        self.tagGroup = read_string(f, 4)
+        self.nameOffset = read_integer(f, True, 4)
+        self.assetId = hex(read_integer(f, False, 8))
+        self.globalId = hex(read_integer(f, False, 4))
+        self.parent = read_integer(f, True, 4)

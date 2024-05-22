@@ -1,7 +1,6 @@
-import struct
 from io import BytesIO
 
-from .. reader import common
+from ..reader.common import read_string, read_integer
 
 __all__ = ["HiModuleHeader"]
 
@@ -34,17 +33,17 @@ class HiModuleHeader:
         """
         Read module header variables.
         """
-        self.magic = struct.unpack("4s", f.read(4))[0]
-        self.version = common.read_integer(f, True, 4)
-        self.moduleId = common.read_integer(f, True, 8)
-        self.fileCount = common.read_integer(f, True, 4)
-        self.manifest0Count = common.read_integer(f, True, 4)
-        self.manifest1Count = common.read_integer(f, True, 4)
-        self.manifest2Count = common.read_integer(f, True, 4)
-        self.resourceIndex = common.read_integer(f, True, 4)
-        self.stringsSize = common.read_integer(f, False, 4)
-        self.resourceCount = common.read_integer(f, False, 4)
-        self.blockCount = common.read_integer(f, False, 4)
-        self.BuildVersion = common.read_integer(f, False, 8)
-        self.hd1Delta = common.read_integer(f, False, 8)
-        self.dataSize = common.read_integer(f, True, 8)
+        self.magic = read_string(f, 4)
+        self.version = read_integer(f, True, 4)
+        self.moduleId = read_integer(f, True, 8)
+        self.fileCount = read_integer(f, True, 4)
+        self.manifest0Count = read_integer(f, True, 4)
+        self.manifest1Count = read_integer(f, True, 4)
+        self.manifest2Count = read_integer(f, True, 4)
+        self.resourceIndex = read_integer(f, True, 4)
+        self.stringsSize = read_integer(f, False, 4)
+        self.resourceCount = read_integer(f, False, 4)
+        self.blockCount = read_integer(f, False, 4)
+        self.BuildVersion = read_integer(f, False, 8)
+        self.hd1Delta = read_integer(f, False, 8)
+        self.dataSize = read_integer(f, True, 8)

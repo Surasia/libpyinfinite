@@ -1,7 +1,6 @@
-import struct
 from io import BytesIO
 
-from .. reader import common
+from ..reader.common import read_integer, read_string
 from enum import IntFlag
 
 __all__ = ["HiModuleFileEntry"]
@@ -52,24 +51,24 @@ class HiModuleFileEntry:
         """
         Read module file entry variables.
         """
-        self.resourceCount = common.read_integer(f, True, 4)
-        self.parentIndex = common.read_integer(f, True, 4)
-        self.unk = common.read_integer(f, True, 2)
-        self.blockCount = common.read_integer(f, True, 2)
-        self.blockIndex = common.read_integer(f, True, 4)
-        self.resourceIndex = common.read_integer(f, True, 4)
-        self.classId = common.reverse_string(struct.unpack("4s", f.read(4))[0])
-        self.dataOffset = common.read_integer(f, True, 6) & 0xFFFFFFFFFFFF
-        self.dataOffsetFlags = HiModuleDataOffsetType(common.read_integer(f, True, 2))
-        self.totalCompressedSize = common.read_integer(f, False, 4)
-        self.totalUncompressedSize = common.read_integer(f, False, 4)
-        self.globalTagId = hex(common.read_integer(f, False, 4))
-        self.uncompressedHeaderSize = common.read_integer(f, False, 4)
-        self.uncompressedTagDataSize = common.read_integer(f, False, 4)
-        self.uncompressedResourceDataSize = common.read_integer(f, False, 4)
-        self.uncompressedActualResourceSize = common.read_integer(f, False, 4)
-        self.resourceBlockCount = common.read_integer(f, True, 4)
-        self.nameOffset = common.read_integer(f, True, 4)
-        self.parentResource = common.read_integer(f, True, 4)
-        self.assetChecksum = common.read_integer(f, True, 8)
-        self.assetId = hex(common.read_integer(f, False, 8))
+        self.resourceCount = read_integer(f, True, 4)
+        self.parentIndex = read_integer(f, True, 4)
+        self.unk = read_integer(f, True, 2)
+        self.blockCount = read_integer(f, True, 2)
+        self.blockIndex = read_integer(f, True, 4)
+        self.resourceIndex = read_integer(f, True, 4)
+        self.classId = read_string(f, 4)
+        self.dataOffset = read_integer(f, True, 6) & 0xFFFFFFFFFFFF
+        self.dataOffsetFlags = HiModuleDataOffsetType(read_integer(f, True, 2))
+        self.totalCompressedSize = read_integer(f, False, 4)
+        self.totalUncompressedSize = read_integer(f, False, 4)
+        self.globalTagId = hex(read_integer(f, False, 4))
+        self.uncompressedHeaderSize = read_integer(f, False, 4)
+        self.uncompressedTagDataSize = read_integer(f, False, 4)
+        self.uncompressedResourceDataSize = read_integer(f, False, 4)
+        self.uncompressedActualResourceSize = read_integer(f, False, 4)
+        self.resourceBlockCount = read_integer(f, True, 4)
+        self.nameOffset = read_integer(f, True, 4)
+        self.parentResource = read_integer(f, True, 4)
+        self.assetChecksum = read_integer(f, True, 8)
+        self.assetId = hex(read_integer(f, False, 8))
