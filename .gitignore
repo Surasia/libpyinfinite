@@ -286,5 +286,3 @@ files/
 .stfolder/
 .ruff_cache/
 patterns/
-requirements-dev.lock
-requirements.lock
