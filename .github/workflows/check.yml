@@ -14,7 +14,7 @@ jobs:
           python-version: "3.12"
       
       - name: Install Rye
-        uses: eifinger/setup-rye@v3
+        uses: eifinger/setup-rye@v3.0.1
         with: 
           version: 'latest'
           enable-cache: true
