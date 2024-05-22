@@ -31,7 +31,7 @@ Oodle is a decompression library used to pack module files, requiring DLL calls 
 from libpyinfinite.module.oodle.oodleDecompressor import OodleDecompressor
 
 decompressor = OodleDecompressor("./oo2core_8_win64.dll") # Windows 64-Bit
-decompressor = OodleDecompressor("./linoodle.so") # Linux/Linux-like. Do note that linoodle is only a wrapper to the DLL and it requires it to be located next to the windows DLL.
+decompressor = OodleDecompressor("./linoodle.so") # Linux/Linux-like. (Requires DLL to be in the same directory.)
 ```
 
 #### Reading the third tag from a module instance:

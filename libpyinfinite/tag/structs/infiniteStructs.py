@@ -8,10 +8,6 @@ These correspond to fields defined in XML Tag Structures.
 
 
 class field_string:
-    """
-    _0 _field_string (32 bytes)
-    """
-
     def __init__(self) -> None:
         self.string: str = ""
 
@@ -282,4 +278,4 @@ class field_reference:
         self.assetId = hex(read_integer(f, True, 8))
         self.classId = read_string(f, 4)
         self.localHandle = read_integer(f, False, 4)
-        self.unknown = read_integer(f, False, 4)
+        self.unknown = read_integer(f, False, 8)
