@@ -17,10 +17,10 @@ Libpyinfinite is available on pypi.
 ```python
 from libpyinfinite.module.module import HiModule
 
-def readModule():
+def read_module():
     with open(modulepath, "rb") as file:
-        moduleInstance = HiModule()
-        moduleInstance.read(file)
+        module_instance = HiModule()
+        module_instance.read(file)
 ```
 
 #### Creating a Oodle Decompressor:

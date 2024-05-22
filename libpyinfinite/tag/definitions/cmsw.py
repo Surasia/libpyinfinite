@@ -2,7 +2,7 @@ from io import BytesIO
 
 from ...reader.common import read_float
 from ..structs.anyTag import AnyTag
-from ..structs.infiniteStructs import field_real_rgb_color, field_reference, field_real_vector_2d
+from ..structs.infiniteStructs import FieldRealRGBColor, FieldReference, FieldRealVector2D
 
 __all__ = ["CoatingSwatchPODTag"]
 
@@ -10,20 +10,20 @@ __all__ = ["CoatingSwatchPODTag"]
 class CoatingSwatchPODTag:
     def __init__(self) -> None:
         self.anyTag: AnyTag = AnyTag()
-        self.parent: field_reference = field_reference()
-        self.colorAndRoughnessTextureTransform: field_real_vector_2d = field_real_vector_2d()
-        self.normalTextureTransform: field_real_vector_2d = field_real_vector_2d()
-        self.colorGradientMap: field_reference = field_reference()
-        self.gradientTopColor: field_real_rgb_color = field_real_rgb_color()
-        self.gradientMidColor: field_real_rgb_color = field_real_rgb_color()
-        self.gradientBottomColor: field_real_rgb_color = field_real_rgb_color()
+        self.parent: FieldReference = FieldReference()
+        self.colorAndRoughnessTextureTransform: FieldRealVector2D = FieldRealVector2D()
+        self.normalTextureTransform: FieldRealVector2D = FieldRealVector2D()
+        self.colorGradientMap: FieldReference = FieldReference()
+        self.gradientTopColor: FieldRealRGBColor = FieldRealRGBColor()
+        self.gradientMidColor: FieldRealRGBColor = FieldRealRGBColor()
+        self.gradientBottomColor: FieldRealRGBColor = FieldRealRGBColor()
         self.roughnessWhite: float = 0.00
         self.roughnessBlack: float = 0.00
-        self.normalDetailMap: field_reference = field_reference()
+        self.normalDetailMap: FieldReference = FieldReference()
         self.metallic: float = 0.00
         self.ior: float = 0.00
         self.albedoTintSpec: float = 0.00
-        self.scratchColor: field_real_rgb_color = field_real_rgb_color()
+        self.scratchColor: FieldRealRGBColor = FieldRealRGBColor()
         self.scratchBrightness: float = 0.00
         self.scratchRoughness: float = 0.00
         self.scratchMetallic: float = 0.00

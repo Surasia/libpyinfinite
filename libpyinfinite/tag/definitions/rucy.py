@@ -1,7 +1,7 @@
 from io import BytesIO
 from typing import List
 from ..structs.anyTag import AnyTag
-from ..structs.infiniteStructs import field_string_id, field_reference, field_real_rgb_color, field_tagblock
+from ..structs.infiniteStructs import FieldStringId, FieldReference, FieldRealRGBColor, FieldTagBlock
 from ...reader.common import read_integer, read_float
 from enum import IntEnum
 
@@ -37,17 +37,17 @@ class UseSSSEnum(IntEnum):
 class CoatingPaletteInfo:
     def __init__(self) -> None:
         self.elementID: int = -1
-        self.description: field_string_id = field_string_id()
-        self.swatch: field_reference = field_reference()
+        self.description: FieldStringId = FieldStringId()
+        self.swatch: FieldReference = FieldReference()
         self.gradientColorFlag: OverrideColorsEnum = OverrideColorsEnum(0)
         self.generated_pad9b5a: int = -1
-        self.gradientTopColor: field_real_rgb_color = field_real_rgb_color()
-        self.gradientMidColor: field_real_rgb_color = field_real_rgb_color()
-        self.gradientBottomColor: field_real_rgb_color = field_real_rgb_color()
+        self.gradientTopColor: FieldRealRGBColor = FieldRealRGBColor()
+        self.gradientMidColor: FieldRealRGBColor = FieldRealRGBColor()
+        self.gradientBottomColor: FieldRealRGBColor = FieldRealRGBColor()
         self.roughnessOffset: float = 0.00
         self.scratchColorFlag: OverrideColorsEnum = OverrideColorsEnum(0)
         self.generated_pade80f: int = -1
-        self.scratchColor: field_real_rgb_color = field_real_rgb_color()
+        self.scratchColor: FieldRealRGBColor = FieldRealRGBColor()
         self.scratchRoughnessOffset: float = 0.00
         self.useEmissive: MaterialState = MaterialState(0)
         self.generated_pad34c4: int = -1
@@ -118,7 +118,7 @@ class RuntimeCoatingStyleInfo:
 
 class RuntimeCoatingIntention:
     def __init__(self) -> None:
-        self.name: field_string_id = field_string_id()
+        self.name: FieldStringId = FieldStringId()
         self.generated_pad7d15: int = -1
         self.info: CoatingPaletteInfo = CoatingPaletteInfo()
 
@@ -130,9 +130,9 @@ class RuntimeCoatingIntention:
 
 class RuntimeCoatingRegion:
     def __init__(self) -> None:
-        self.name: field_string_id = field_string_id()
-        self.coatingMaterialOverride: field_reference = field_reference()
-        self.intentionsTagBlock: field_tagblock = field_tagblock()
+        self.name: FieldStringId = FieldStringId()
+        self.coatingMaterialOverride: FieldReference = FieldReference()
+        self.intentionsTagBlock: FieldTagBlock = FieldTagBlock()
         self.intentions: List[RuntimeCoatingIntention] = []
 
     def read(self, f: BytesIO) -> None:
@@ -140,7 +140,7 @@ class RuntimeCoatingRegion:
         self.coatingMaterialOverride.read(f)
         self.intentionsTagBlock.read(f)
 
-    def readTagBlock(self, f: BytesIO) -> None:
+    def read_tag_block(self, f: BytesIO) -> None:
         for _ in range(self.intentionsTagBlock.count):
             intention = RuntimeCoatingIntention()
             intention.read(f)
@@ -151,7 +151,7 @@ class RuntimeCoatingStyleTag:
     def __init__(self) -> None:
         self.anyTag: AnyTag = AnyTag()
         self.info: RuntimeCoatingStyleInfo = RuntimeCoatingStyleInfo()
-        self.regionTagBlock: field_tagblock = field_tagblock()
+        self.regionTagBlock: FieldTagBlock = FieldTagBlock()
         self.regions: List[RuntimeCoatingRegion] = []
         self.generated_paddb44: int = -1
 
@@ -168,4 +168,4 @@ class RuntimeCoatingStyleTag:
             self.regions.append(region)
 
         for region in self.regions:
-            region.readTagBlock(f)
+            region.read_tag_block(f)

@@ -1,7 +1,7 @@
 from io import BytesIO
 from typing import List
 from ..structs.anyTag import AnyTag
-from ..structs.infiniteStructs import field_tagblock, field_string_id, field_reference
+from ..structs.infiniteStructs import FieldTagBlock, FieldStringId, FieldReference
 from ...reader.common import read_integer
 
 __all__ = ["RuntimeCoatingStylesTag"]
@@ -9,9 +9,9 @@ __all__ = ["RuntimeCoatingStylesTag"]
 
 class RuntimeCoatingStyleRef:
     def __init__(self) -> None:
-        self.name: field_string_id = field_string_id()
-        self.variantName: field_string_id = field_string_id()
-        self.styleRef: field_reference = field_reference()
+        self.name: FieldStringId = FieldStringId()
+        self.variantName: FieldStringId = FieldStringId()
+        self.styleRef: FieldReference = FieldReference()
 
     def read(self, f: BytesIO) -> None:
         self.name.read(f)
@@ -22,9 +22,9 @@ class RuntimeCoatingStyleRef:
 class RuntimeCoatingStylesTag:
     def __init__(self) -> None:
         self.anyTag: AnyTag = AnyTag()
-        self.stylesTagBlock: field_tagblock = field_tagblock()
+        self.stylesTagBlock: FieldTagBlock = FieldTagBlock()
         self.styles: List[RuntimeCoatingStyleRef] = []
-        self.visorSwatch: field_reference = field_reference()
+        self.visorSwatch: FieldReference = FieldReference()
         self.defaultStyleIndex: int = -1
         self.generated_pad23c7: int = -1
 

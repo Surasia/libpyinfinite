@@ -1,7 +1,7 @@
 [project]
 name = "libpyinfinite"
 version = "0.0.2"
-description = "Python library for dealing with binary files from Halo Infinite"
+description = "Python library for parsing binary files from Halo Infinite."
 license = {file = "LICENSE"}
 authors = [{ name = "Surasia"}]
 requires-python = ">= 3.11.0"

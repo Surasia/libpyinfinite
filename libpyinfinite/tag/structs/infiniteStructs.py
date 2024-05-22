@@ -7,7 +7,7 @@ These correspond to fields defined in XML Tag Structures.
 """
 
 
-class field_string:
+class FieldString:
     def __init__(self) -> None:
         self.string: str = ""
 
@@ -15,7 +15,7 @@ class field_string:
         self.string = read_string(f, 32)
 
 
-class field_long_string:
+class FieldLongString:
     def __init__(self) -> None:
         self.string: str = ""
 
@@ -23,7 +23,7 @@ class field_long_string:
         self.string = read_string(f, 256)
 
 
-class field_string_id:
+class FieldStringId:
     def __init__(self) -> None:
         self.stringId: int = -1
         self.stringIdHex: str = ""
@@ -33,7 +33,7 @@ class field_string_id:
         self.stringIdHex = hex(self.stringId)
 
 
-class field_point_2d:
+class FieldPoint2D:
     def __init__(self) -> None:
         self.x: int = -1
         self.y: int = -1
@@ -43,7 +43,7 @@ class field_point_2d:
         self.y = read_integer(f, False, 2)
 
 
-class field_rectangle_2d:
+class FieldRectangle2D:
     def __init__(self) -> None:
         self.x: int = -1
         self.y: int = -1
@@ -53,7 +53,7 @@ class field_rectangle_2d:
         self.y = read_integer(f, False, 2)
 
 
-class field_rgb_color:
+class FieldRGBColor:
     def __init__(self) -> None:
         self.r: int = -1
         self.g: int = -1
@@ -67,7 +67,7 @@ class field_rgb_color:
         self.a = read_integer(f, False, 1)
 
 
-class field_argb_color:
+class FieldARGBColor:
     def __init__(self) -> None:
         self.r: int = -1
         self.g: int = -1
@@ -81,7 +81,7 @@ class field_argb_color:
         self.a = read_integer(f, False, 1)
 
 
-class field_real_point_2d:
+class FieldRealPoint2D:
     def __init__(self) -> None:
         self.x: float = 0.00
         self.y: float = 0.00
@@ -91,29 +91,7 @@ class field_real_point_2d:
         self.y = read_float(f)
 
 
-class field_real_point_3d:
-    def __init__(self) -> None:
-        self.x: float = 0.00
-        self.y: float = 0.00
-        self.z: float = 0.00
-
-    def read(self, f: BytesIO) -> None:
-        self.x = read_float(f)
-        self.y = read_float(f)
-        self.z = read_float(f)
-
-
-class field_real_vector_2d:
-    def __init__(self) -> None:
-        self.x: float = 0.00
-        self.y: float = 0.00
-
-    def read(self, f: BytesIO) -> None:
-        self.x = read_float(f)
-        self.y = read_float(f)
-
-
-class field_real_vector_3d:
+class FieldRealPoint3D:
     def __init__(self) -> None:
         self.x: float = 0.00
         self.y: float = 0.00
@@ -125,7 +103,29 @@ class field_real_vector_3d:
         self.z = read_float(f)
 
 
-class field_real_quaternion:
+class FieldRealVector2D:
+    def __init__(self) -> None:
+        self.x: float = 0.00
+        self.y: float = 0.00
+
+    def read(self, f: BytesIO) -> None:
+        self.x = read_float(f)
+        self.y = read_float(f)
+
+
+class FieldRealVector3D:
+    def __init__(self) -> None:
+        self.x: float = 0.00
+        self.y: float = 0.00
+        self.z: float = 0.00
+
+    def read(self, f: BytesIO) -> None:
+        self.x = read_float(f)
+        self.y = read_float(f)
+        self.z = read_float(f)
+
+
+class FieldRealQuaternion:
     def __init__(self) -> None:
         self.x: float = 0.00
         self.y: float = 0.00
@@ -139,7 +139,7 @@ class field_real_quaternion:
         self.w = read_float(f)
 
 
-class field_real_eular_angles_2d:
+class FieldRealEularAngles2D:
     def __init__(self) -> None:
         self.x: float = 0.00
         self.y: float = 0.00
@@ -149,7 +149,7 @@ class field_real_eular_angles_2d:
         self.y = read_float(f)
 
 
-class field_real_eular_angles_3d:
+class FieldRealEularAngles3D:
     def __init__(self) -> None:
         self.x: float = 0.00
         self.y: float = 0.00
@@ -161,7 +161,7 @@ class field_real_eular_angles_3d:
         self.z = read_float(f)
 
 
-class field_real_plane_2d:
+class FieldRealPlane2D:
     def __init__(self) -> None:
         self.x: float = 0.00
         self.y: float = 0.00
@@ -173,7 +173,7 @@ class field_real_plane_2d:
         self.d = read_float(f)
 
 
-class field_real_plane_3d:
+class FieldRealPlane3D:
     def __init__(self) -> None:
         self.x: float = 0.00
         self.y: float = 0.00
@@ -187,7 +187,7 @@ class field_real_plane_3d:
         self.d = read_float(f)
 
 
-class field_real_rgb_color:
+class FieldRealRGBColor:
     def __init__(self) -> None:
         self.r: float = 0.00
         self.g: float = 0.00
@@ -199,7 +199,7 @@ class field_real_rgb_color:
         self.b = read_float(f)
 
 
-class field_real_argb_color:
+class FieldRealARGBColor:
     def __init__(self) -> None:
         self.a: float = 0.00
         self.r: float = 0.00
@@ -213,7 +213,7 @@ class field_real_argb_color:
         self.b = read_float(f)
 
 
-class field_short_bounds:
+class FieldShortBounds:
     def __init__(self) -> None:
         self.x: int = -1
         self.y: int = -1
@@ -223,7 +223,7 @@ class field_short_bounds:
         self.y = read_integer(f, False, 2)
 
 
-class field_angle_bounds:
+class FieldAngleBounds:
     def __init__(self) -> None:
         self.x: int = -1
         self.y: int = -1
@@ -233,7 +233,7 @@ class field_angle_bounds:
         self.y = read_integer(f, False, 4)
 
 
-class field_real_bounds:
+class FieldRealBounds:
     def __init__(self) -> None:
         self.x: float = 0.00
         self.y: float = 0.00
@@ -243,7 +243,7 @@ class field_real_bounds:
         self.y = read_float(f)
 
 
-class field_real_fraction_bounds:
+class FieldRealFractionBounds:
     def __init__(self) -> None:
         self.x: float = 0.00
         self.y: float = 0.00
@@ -253,7 +253,7 @@ class field_real_fraction_bounds:
         self.y = read_float(f)
 
 
-class field_tagblock:
+class FieldTagBlock:
     def __init__(self) -> None:
         self.pointer0: int = -1
         self.pointer1: int = -1
@@ -265,7 +265,7 @@ class field_tagblock:
         self.count = read_integer(f, False, 4)
 
 
-class field_reference:
+class FieldReference:
     def __init__(self) -> None:
         self.typeInfo: int = -1
         self.globalId: str = ""
