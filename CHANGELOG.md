@@ -1,5 +1,12 @@
 # LibPyInfinite Changelog
 
+## 0.0.4 (2024-07-09)
+### New Functionality:
+- New "Meta" item added to tags. This corresponds to their class-specific attributes.
+
+### Fixes/Improvements:
+- Fixed excessive memory usage when loading modules.
+
 ## 0.0.3 (2024-07-09)
 ### New Functionality:
 - Added module loader, making loading tags and modules much more efficiet and easy to use. Check README for example usage.

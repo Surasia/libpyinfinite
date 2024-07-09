@@ -1,5 +1,7 @@
 from io import BytesIO
 
+from libpyinfinite.tag.tag import HiTag
+
 from ...reader.common import read_float
 from ..structs.anyTag import AnyTag
 from ..structs.infiniteStructs import FieldRealRGBColor, FieldReference, FieldRealVector2D
@@ -33,7 +35,7 @@ class CoatingSwatchPODTag:
         self.emissiveIntensity: float = 0.00
         self.emissiveAmount: float = 0.00
 
-    def read(self, f: BytesIO) -> None:
+    def read(self, f: BytesIO, tag: HiTag) -> None:
         self.anyTag.read(f)
         self.parent.read(f)
         self.colorAndRoughnessTextureTransform.read(f)
@@ -57,3 +59,6 @@ class CoatingSwatchPODTag:
         self.sssIntensity = read_float(f)
         self.emissiveIntensity = read_float(f)
         self.emissiveAmount = read_float(f)
+        
+        tag.Meta = self
+        f.seek(tag.Header.headerSize)

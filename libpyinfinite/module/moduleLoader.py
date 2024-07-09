@@ -26,7 +26,7 @@ class ModuleLoader:
 
         f = open(filepath, "rb")
         module = HiModule()
-        module.read(BytesIO(f.read()))
+        module.read(f) # type: ignore
         self.modules.append(module)
 
     def closeModules(self) -> None:

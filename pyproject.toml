@@ -1,6 +1,6 @@
 [project]
 name = "libpyinfinite"
-version = "0.0.3"
+version = "0.0.4"
 description = "Python library for parsing binary files from Halo Infinite."
 license = {file = "LICENSE"}
 authors = [{ name = "Surasia"}]

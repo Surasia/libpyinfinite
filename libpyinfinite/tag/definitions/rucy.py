@@ -1,5 +1,7 @@
 from io import BytesIO
 from typing import List
+
+from libpyinfinite.tag.tag import HiTag
 from ..structs.anyTag import AnyTag
 from ..structs.infiniteStructs import FieldStringId, FieldReference, FieldRealRGBColor, FieldTagBlock
 from ...reader.common import read_integer, read_float
@@ -155,7 +157,7 @@ class RuntimeCoatingStyleTag:
         self.regions: List[RuntimeCoatingRegion] = []
         self.generated_paddb44: int = -1
 
-    def read(self, f: BytesIO) -> None:
+    def read(self, f: BytesIO, tag: HiTag) -> None:
         self.anyTag.read(f)
         self.info.read(f)
         self.regionTagBlock.read(f)
@@ -169,3 +171,6 @@ class RuntimeCoatingStyleTag:
 
         for region in self.regions:
             region.read_tag_block(f)
+
+        tag.Meta = self
+        f.seek(tag.Header.headerSize)
