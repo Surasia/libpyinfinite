@@ -1,5 +1,7 @@
 from io import BytesIO
 from typing import List
+
+from libpyinfinite.tag.tag import HiTag
 from ..structs.anyTag import AnyTag
 from ..structs.infiniteStructs import FieldTagBlock, FieldStringId, FieldReference
 from ...reader.common import read_integer
@@ -28,7 +30,7 @@ class RuntimeCoatingStylesTag:
         self.defaultStyleIndex: int = -1
         self.generated_pad23c7: int = -1
 
-    def read(self, f: BytesIO) -> None:
+    def read(self, f: BytesIO, tag: HiTag) -> None:
         self.anyTag.read(f)
         self.stylesTagBlock.read(f)
         self.visorSwatch.read(f)
@@ -38,3 +40,6 @@ class RuntimeCoatingStylesTag:
             style = RuntimeCoatingStyleRef()
             style.read(f)
             self.styles.append(style)
+        
+        tag.Meta = self
+        f.seek(tag.Header.headerSize)

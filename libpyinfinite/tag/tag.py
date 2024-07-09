@@ -1,5 +1,5 @@
 from io import BytesIO
-from typing import List
+from typing import Any, List
 
 from .tagDataBlock import HiTagDataBlock
 from .tagDataReference import HiTagDataReference
@@ -34,6 +34,7 @@ class HiTag:
         self.TagReferences: List[HiTagReference] = []
         self.ZonesetHeader: HiTagZonesetHeader = HiTagZonesetHeader()
         self.Zonesets: List[HiTagZoneInstance] = []
+        self.Meta: Any
 
     def read(self, f: BytesIO, module_file: HiModuleFileEntry) -> None:
         """
