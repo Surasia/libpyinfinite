@@ -14,12 +14,12 @@ class HiTagZonesetTag:
         """
         Initialize zoneset tag variables.
         """
-        self.globalId: str = ""
+        self.globalId: int = -1
         self.stringId: int = -1
 
     def read(self, f: BytesIO) -> None:
         """
         Reads zoneset tag variables.
         """
-        self.globalId = hex(read_integer(f, False, 4))
+        self.globalId = read_integer(f, False, 4)
         self.stringId = read_integer(f, True, 4)

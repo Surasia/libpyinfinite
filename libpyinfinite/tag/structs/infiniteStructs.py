@@ -265,17 +265,31 @@ class FieldTagBlock:
         self.count = read_integer(f, False, 4)
 
 
+class FieldDataReference:
+    def __init__(self) -> None:
+        self.data: int = -1
+        self.typeInfo: int = -1
+        self.unknown: int = -1
+        self.count: int = -1
+
+    def read(self, f: BytesIO) -> None:
+        self.data = read_integer(f, False, 8)
+        self.typeInfo = read_integer(f, False, 8)
+        self.unknown = read_integer(f, False, 4)
+        self.count = read_integer(f, False, 4)
+
+
 class FieldReference:
     def __init__(self) -> None:
         self.typeInfo: int = -1
-        self.globalId: str = ""
-        self.assetId: str = ""
+        self.globalId: int = -1
+        self.assetId: int = -1
         self.classId: str = ""
         self.localHandle: int = -1
 
     def read(self, f: BytesIO) -> None:
         self.typeInfo = read_integer(f, False, 8)
-        self.globalId = hex(read_integer(f, False, 4))
-        self.assetId = hex(read_integer(f, False, 8))
+        self.globalId = read_integer(f, False, 4)
+        self.assetId = read_integer(f, False, 8)
         self.classId = read_string(f, 4)
         self.localHandle = read_integer(f, False, 4)

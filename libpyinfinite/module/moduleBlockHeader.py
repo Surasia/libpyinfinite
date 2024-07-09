@@ -18,14 +18,14 @@ class HiModuleBlockEntry:
         self.comp_size: int = -1
         self.decomp_offset: int = -1
         self.decomp_size: int = -1
-        self.b_compressed: int = False
+        self.b_compressed: bool = False
 
     def read(self, f: BytesIO) -> None:
         """
         Read module block variables.
         """
-        self.comp_offset = read_integer(f, True, 4)
-        self.comp_size = read_integer(f, True, 4)
-        self.decomp_offset = read_integer(f, True, 4)
-        self.decomp_size = read_integer(f, True, 4)
-        self.b_compressed = read_integer(f, False, 4)
+        self.comp_offset = read_integer(f, False, 4)
+        self.comp_size = read_integer(f, False, 4)
+        self.decomp_offset = read_integer(f, False, 4)
+        self.decomp_size = read_integer(f, False, 4)
+        self.b_compressed = bool(read_integer(f, False, 4))

@@ -25,7 +25,7 @@ class HiTagDataBlock:
         """
         Reads data block variables.
         """
-        self.entrySize = read_integer(f, True, 4)
+        self.entrySize = read_integer(f, False, 4)
         self.pad = read_integer(f, True, 2)
         self.section = HiTagSectionType(read_integer(f, True, 2))
-        self.offset = read_integer(f, True, 8)
+        self.offset = read_integer(f, False, 8)
