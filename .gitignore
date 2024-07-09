@@ -286,3 +286,5 @@ files/
 .stfolder/
 .ruff_cache/
 patterns/
+.trunk
+.trunk/

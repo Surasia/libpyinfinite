@@ -6,11 +6,11 @@ __all__ = ["AnyTag"]
 
 class InternalStruct:
     def __init__(self) -> None:
-        self.globalTagId: str = ""
+        self.globalTagId: int = -1
         self.localTagHandle: int = -1
 
     def read(self, f: BytesIO) -> None:
-        self.globalTagId = hex(read_integer(f, False, 4))
+        self.globalTagId = read_integer(f, False, 4)
         self.localTagHandle = read_integer(f, False, 4)
 
 

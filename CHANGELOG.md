@@ -1,5 +1,17 @@
 # LibPyInfinite Changelog
 
+## 0.0.3 (2024-07-09)
+### New Functionality:
+- Added module loader, making loading tags and modules much more efficiet and easy to use. Check README for example usage.
+- Tags now seek to the end of the header.
+- Modules and tags now inherit their file handles.
+- Tags now inherit their module entries.
+- FieldDataReference has been added to the list of structures.
+  
+### Fixes/Improvements:
+- Some integer values incorrectly set as signed have been set to unsigned.
+- Inconsistent naming in variable names has been changed.
+
 ## 0.0.2 (2024-05-22)
 ### New Functionality:
 - CMSW, RUCS and RUCY tags can now be parsed using definitions. An example implementation can be found in the README.

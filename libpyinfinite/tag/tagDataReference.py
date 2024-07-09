@@ -27,5 +27,5 @@ class HiTagDataReference:
         self.parentStructIndex = read_integer(f, True, 4)
         self.unknown = read_integer(f, True, 4)
         self.targetIndex = read_integer(f, True, 4)
-        self.fieldBlock = read_integer(f, True, 4)
+        self.fieldBlock = read_integer(f, False, 4)
         self.fieldOffset = read_integer(f, False, 4)

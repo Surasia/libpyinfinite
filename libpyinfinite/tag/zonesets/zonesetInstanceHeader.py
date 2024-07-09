@@ -24,6 +24,6 @@ class HiTagZonesetInstanceHeader:
         Reads zoneset instance header variables.
         """
         self.stringId = read_integer(f, True, 4)
-        self.tagCount = read_integer(f, True, 4)
-        self.parentCount = read_integer(f, True, 4)
-        self.footerCount = read_integer(f, True, 4)
+        self.tagCount = read_integer(f, False, 4)
+        self.parentCount = read_integer(f, False, 4)
+        self.footerCount = read_integer(f, False, 4)

@@ -24,6 +24,6 @@ class HiTagZonesetHeader:
         Reads Zoneset Header.
         """
         self.version = read_integer(f, True, 4)
-        self.zonesetCount = read_integer(f, True, 4)
-        self.footerCount = read_integer(f, True, 4)
-        self.parents = read_integer(f, True, 4)
+        self.zonesetCount = read_integer(f, False, 4)
+        self.footerCount = read_integer(f, False, 4)
+        self.parents = read_integer(f, False, 4)

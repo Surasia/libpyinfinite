@@ -12,8 +12,8 @@ class HiTagDependency:
         """
         self.tagGroup: str = ""
         self.nameOffset: int = -1
-        self.assetId: str = ""
-        self.globalId: str = ""
+        self.assetId: int = -1
+        self.globalId: int = -1
         self.parent: int = -1
 
     def read(self, f: BytesIO) -> None:
@@ -22,6 +22,6 @@ class HiTagDependency:
         """
         self.tagGroup = read_string(f, 4)
         self.nameOffset = read_integer(f, True, 4)
-        self.assetId = hex(read_integer(f, False, 8))
-        self.globalId = hex(read_integer(f, False, 4))
+        self.assetId = read_integer(f, False, 8)
+        self.globalId = read_integer(f, False, 4)
         self.parent = read_integer(f, True, 4)
