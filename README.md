@@ -49,7 +49,7 @@ from libpyinfinite.tag.definitions.rucy import RuntimeCoatingStyleTag
 
 if loaded_tag.ModuleEntry.classId == b"rucy": # check if tag is of type "rucy"
     rucy = RuntimeCoatingStyleTag()
-    rucy.read(loaded_tag.Handle) # Handle is the raw data from the tag.
+    rucy.read(loaded_tag)
     print(rucy.info.emissiveIntensity)
 
 >>> 0.00

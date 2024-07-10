@@ -1,5 +1,3 @@
-from io import BytesIO
-
 from libpyinfinite.tag.tag import HiTag
 
 from ...reader.common import read_float
@@ -35,30 +33,30 @@ class CoatingSwatchPODTag:
         self.emissiveIntensity: float = 0.00
         self.emissiveAmount: float = 0.00
 
-    def read(self, f: BytesIO, tag: HiTag) -> None:
-        self.anyTag.read(f)
-        self.parent.read(f)
-        self.colorAndRoughnessTextureTransform.read(f)
-        self.normalTextureTransform.read(f)
-        self.colorGradientMap.read(f)
-        self.gradientTopColor.read(f)
-        self.gradientMidColor.read(f)
-        self.gradientBottomColor.read(f)
-        self.roughnessWhite = read_float(f)
-        self.roughnessBlack = read_float(f)
-        self.normalDetailMap.read(f)
-        self.metallic = read_float(f)
-        self.ior = read_float(f)
-        self.albedoTintSpec = read_float(f)
-        self.scratchColor.read(f)
-        self.scratchBrightness = read_float(f)
-        self.scratchRoughness = read_float(f)
-        self.scratchMetallic = read_float(f)
-        self.scratchIOR = read_float(f)
-        self.scratchAlbedoTintSpec = read_float(f)
-        self.sssIntensity = read_float(f)
-        self.emissiveIntensity = read_float(f)
-        self.emissiveAmount = read_float(f)
+    def read(self, tag: HiTag) -> None:
+        self.anyTag.read(tag.Handle)
+        self.parent.read(tag.Handle)
+        self.colorAndRoughnessTextureTransform.read(tag.Handle)
+        self.normalTextureTransform.read(tag.Handle)
+        self.colorGradientMap.read(tag.Handle)
+        self.gradientTopColor.read(tag.Handle)
+        self.gradientMidColor.read(tag.Handle)
+        self.gradientBottomColor.read(tag.Handle)
+        self.roughnessWhite = read_float(tag.Handle)
+        self.roughnessBlack = read_float(tag.Handle)
+        self.normalDetailMap.read(tag.Handle)
+        self.metallic = read_float(tag.Handle)
+        self.ior = read_float(tag.Handle)
+        self.albedoTintSpec = read_float(tag.Handle)
+        self.scratchColor.read(tag.Handle)
+        self.scratchBrightness = read_float(tag.Handle)
+        self.scratchRoughness = read_float(tag.Handle)
+        self.scratchMetallic = read_float(tag.Handle)
+        self.scratchIOR = read_float(tag.Handle)
+        self.scratchAlbedoTintSpec = read_float(tag.Handle)
+        self.sssIntensity = read_float(tag.Handle)
+        self.emissiveIntensity = read_float(tag.Handle)
+        self.emissiveAmount = read_float(tag.Handle)
         
         tag.Meta = self
-        f.seek(tag.Header.headerSize)
+        tag.Handle.seek(tag.Header.headerSize)
