@@ -157,20 +157,20 @@ class RuntimeCoatingStyleTag:
         self.regions: List[RuntimeCoatingRegion] = []
         self.generated_paddb44: int = -1
 
-    def read(self, f: BytesIO, tag: HiTag) -> None:
-        self.anyTag.read(f)
-        self.info.read(f)
-        self.regionTagBlock.read(f)
+    def read(self, tag: HiTag) -> None:
+        self.anyTag.read(tag.Handle)
+        self.info.read(tag.Handle)
+        self.regionTagBlock.read(tag.Handle)
 
-        f.seek(4, 1)  # 4 Byte padding, for some reason
+        tag.Handle.seek(4, 1)  # 4 Byte padding, for some reason
 
         for _ in range(self.regionTagBlock.count):
             region = RuntimeCoatingRegion()
-            region.read(f)
+            region.read(tag.Handle)
             self.regions.append(region)
 
         for region in self.regions:
-            region.read_tag_block(f)
+            region.read_tag_block(tag.Handle)
 
         tag.Meta = self
-        f.seek(tag.Header.headerSize)
+        tag.Handle.seek(tag.Header.headerSize)
