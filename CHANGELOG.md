@@ -1,10 +1,9 @@
 # LibPyInfinite Changelog
 
-## 0.1.0 (2024-07-10)
+## 0.0.5 (2024-07-10)
 ### New Functionality:
 - Added material tag. Can be accessed via `definitions.mat`
 - Definitions now are read using the tag handle.
-- First beta release of libpyinfinite
 
 ### Fixes/Improvements:
 - Fixed high memory usage due to modules being loaded into memory entirely.
